@@ -105,7 +105,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	averageSpeed := meanSpeed(action, duration)
 	speedSquared := math.Pow(averageSpeed/3.6, 2)
 
-	return (walkingCaloriesWeightMultiplier*weight + (speedSquared / height)) * (walkingSpeedHeightMultiplier * weight) * duration * minInH
+	return (walkingCaloriesWeightMultiplier*weight + (speedSquared/height)*walkingSpeedHeightMultiplier*weight) * duration * minInH
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
