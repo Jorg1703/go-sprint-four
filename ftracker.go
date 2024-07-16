@@ -82,9 +82,8 @@ const (
 // duration float64 — длительность тренировки в часах.
 func RunningSpentCalories(action int, weight, duration float64) float64 {
 	// ваш код здесь
-
 	meanSpeed := meanSpeed(action, duration)
-	return runningCaloriesMeanSpeedMultiplier * meanSpeed * runningCaloriesMeanSpeedShift * weight / 1000
+	return (runningCaloriesMeanSpeedMultiplier * meanSpeed * runningCaloriesMeanSpeedShift) * weight / mInKm * duration * minInH
 }
 
 // Константы для расчета калорий, расходуемых при ходьбе.
@@ -104,10 +103,9 @@ const (
 func WalkingSpentCalories(action int, duration, weight, height float64) float64 {
 	// ваш код здесь
 	averageSpeed := meanSpeed(action, duration)
-	speedSquared := math.Pow(averageSpeed/3.6, 2)
-	caloriesBurned := ((walkingCaloriesWeightMultiplier * weight) + (speedSquared / height)) * (walkingSpeedHeightMultiplier * weight) * duration * minInH
+	speedSquared := math.Pow(averageSpeed, 2)
 
-	return caloriesBurned
+	return (walkingCaloriesWeightMultiplier*weight + (speedSquared / height)) * (walkingSpeedHeightMultiplier * weight) * duration * minInH
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
