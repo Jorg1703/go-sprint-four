@@ -106,7 +106,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 		return 0
 	}
 	averageSpeed := meanSpeed(action, duration)
-	averageSpeedMs := averageSpeed * 1000 / 3600
+	averageSpeedMs := averageSpeed * kmhInMsec
 	speedSquared := math.Pow(averageSpeedMs, 2)
 	heightM := height / cmInM
 
